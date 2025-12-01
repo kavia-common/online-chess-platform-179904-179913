@@ -30,12 +30,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// Jakarta Bean Validation provider (Hibernate Validator) for Spring Boot 3.x
-	implementation 'org.hibernate.validator:hibernate-validator'
-	// Jakarta Validation API (managed by Spring Boot BOM)
-	implementation 'jakarta.validation:jakarta.validation-api'
 
+	// Prefer Spring Boot managed validation starter to ensure correct versions (Hibernate Validator 8.x and Jakarta EL)
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// Explicit EL implementation (Glassfish EL) to satisfy Hibernate Validator in environments without a default EL
+	implementation 'org.glassfish:jakarta.el:4.0.2'
+
+	// OpenAPI/Swagger UI for Spring MVC
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
