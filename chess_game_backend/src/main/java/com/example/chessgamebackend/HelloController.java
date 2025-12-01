@@ -37,9 +37,10 @@ public class HelloController {
     @GetMapping("/docs")
     @Operation(summary = "API Documentation", description = "Redirects to Swagger UI preserving original scheme/host/port")
     public RedirectView docs(HttpServletRequest request) {
+        // springdoc 2.x default UI location is /swagger-ui/index.html
         String target = UriComponentsBuilder
                 .fromHttpRequest(new ServletServerHttpRequest(request))
-                .replacePath("/swagger-ui.html")
+                .replacePath("/swagger-ui/index.html")
                 .replaceQuery(null)
                 .build()
                 .toUriString();
